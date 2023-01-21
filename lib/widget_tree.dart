@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({Key? key}) : super(key: key);
-
   @override
   State<WidgetTree> createState() => _WidgetTreeState();
 }
