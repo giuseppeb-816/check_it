@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../auth.dart';
 import 'package:check_it/pages/SocialPage.dart';
+import 'package:check_it/pages/ClearGoalsPage.dart';
 
 
 class setGoalsPage extends StatefulWidget {
@@ -78,7 +79,7 @@ class _createGoals extends State<setGoalsPage> {
               text: "Swipe to submit goals!",
               textStyle: TextStyle(fontSize: 17, color: Colors.white),
               onSubmit: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
               },
             )
           ],
