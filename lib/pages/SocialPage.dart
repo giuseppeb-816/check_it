@@ -1,11 +1,10 @@
 //Page where user can view their total score and goal history
-
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MyAppSocial());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppSocial extends StatelessWidget {
+  const MyAppSocial({super.key});
 
   static const String _title = 'Flutter Code Sample';
 
@@ -17,19 +16,19 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
       ),
-      home: MyStatefulWidget(),
+      home: SocialPageWidget(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
+class SocialPageWidget extends StatefulWidget {
+  const SocialPageWidget({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<SocialPageWidget> createState() => _SocialPageWidgetState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _SocialPageWidgetState extends State<SocialPageWidget> {
   List<int> top = <int>[];
   List<int> bottom = <int>[];
 

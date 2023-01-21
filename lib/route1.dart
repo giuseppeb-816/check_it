@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:check_it/pages/SocialPage.dart';
+import 'package:check_it/widget_tree.dart';
 void main() {
   runApp(const MaterialApp(
     title: 'Navigation Basics',
-    home: FirstRoute(),
+    home: WidgetTree(),
   ));
 }
 
@@ -22,7 +23,7 @@ class FirstRoute extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SecondRoute()),
+                MaterialPageRoute(builder: (context) => const SocialPageWidget()),
               );
           },
         ),

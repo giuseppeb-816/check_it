@@ -1,4 +1,6 @@
 import 'package:check_it/auth.dart';
+import 'package:check_it/pages/SocialPage.dart';
+import 'package:check_it/route1.dart';
 import 'package:check_it/pages/home_page.dart';
 import 'package:check_it/pages/login_register_page.dart';
 import 'package:flutter/material.dart';
