@@ -45,6 +45,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
     var theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: theme.colorScheme.primaryContainer,
       appBar: AppBar(
         title: const Text('Social Page'),
         backgroundColor: theme.colorScheme.primary,
@@ -76,7 +77,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     color: theme.colorScheme.tertiary
 
                   ),
-                  tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.primaryContainer,
+                  tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.background,
                   title: Text('${goals[index][0]}'),
                   subtitle: Text(
                       "${goals[index][2] == "true" ? "✔ " : "✘  "} ${goals[index][1]}\n"
@@ -97,7 +98,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 child: ElevatedButton.icon(
                   onPressed: (){
 
@@ -110,7 +111,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 child: ElevatedButton.icon(
                   onPressed: (){
 
@@ -123,7 +124,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 child: ElevatedButton.icon(
                   onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));

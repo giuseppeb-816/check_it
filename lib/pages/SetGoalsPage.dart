@@ -74,10 +74,7 @@ class _createGoals extends State<setGoalsPage> {
               borderRadius: 25,
               outerColor: Theme.of(context).colorScheme.primary,
               text: "Swipe to submit goals!",
-              textStyle: TextStyle(
-                  fontSize: 17,
-                  color: Theme.of(context).colorScheme.onPrimary,
-              ),
+              textStyle: TextStyle(fontSize: 17, color: Colors.white),
               onSubmit: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
               },
