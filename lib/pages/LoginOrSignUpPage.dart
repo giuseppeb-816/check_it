@@ -29,14 +29,14 @@ class LoginOrSignUpPage extends StatelessWidget {
                 onPressed: () {
 
                 },
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
 
                 },
-                child: Text('Sign Up'),
+                child: const Text('Sign Up'),
               ),
             ],
           ),

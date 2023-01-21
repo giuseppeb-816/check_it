@@ -1,3 +1,4 @@
+import 'package:check_it/pages/CreateAccountPage.dart';
 import 'package:check_it/pages/LoginOrSignUpPage.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
       ),
-      home: LoginOrSignUpPage(),
+      home: CreateAccountPage(),
     );
   }
 }
