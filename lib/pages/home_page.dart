@@ -1,6 +1,7 @@
 import 'package:check_it/pages/SocialPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:check_it/auth.dart';
+import 'package:check_it/pages/SetGoalsPage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -43,6 +44,9 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             _userUid(),
             _signOutButton(),
+            ElevatedButton(onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
+            }, child: Text("Set Goals")),
             ElevatedButton(onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
             }, child: Text("Social Page")),
