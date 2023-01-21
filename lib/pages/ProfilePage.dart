@@ -36,6 +36,8 @@ class _ProfilePage extends State<ProfilePage> {
             Padding(
               padding: const EdgeInsets.all(0),
               child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       "Profile Name",
@@ -59,15 +61,17 @@ class _ProfilePage extends State<ProfilePage> {
                         "21420",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 56
+                            fontSize: 56,
+                            color: theme.colorScheme.primary,
                         ),
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "Check\nScore",
+                        "CheckIt\nScore",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 18,
+                            color: theme.colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -88,6 +92,7 @@ class _ProfilePage extends State<ProfilePage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 44,
+                            color: theme.colorScheme.primary,
                         ),
                       ),
                       Text(
@@ -96,6 +101,7 @@ class _ProfilePage extends State<ProfilePage> {
                         style: TextStyle(
                           fontSize: 18,
                           fontStyle: FontStyle.italic,
+                          color: theme.colorScheme.secondary,
                         )
                       )
                     ],
@@ -108,7 +114,8 @@ class _ProfilePage extends State<ProfilePage> {
                         Text(
                           "43",
                           style: TextStyle(
-                              fontSize: 44
+                              fontSize: 44,
+                              color: theme.colorScheme.primary,
                           ),
                         ),
                         Text(
@@ -116,6 +123,7 @@ class _ProfilePage extends State<ProfilePage> {
                           style: TextStyle(
                             fontSize: 18,
                             fontStyle: FontStyle.italic,
+                            color: theme.colorScheme.secondary,
                           )
                         )
                       ],

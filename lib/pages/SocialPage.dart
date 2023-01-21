@@ -104,8 +104,8 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                   onPressed: (){
 
                   },
-                  icon: const Icon(Icons.settings),
-                  label: Text("Options"),
+                  icon: const Icon(Icons.home_filled),
+                  label: Text("Home"),
                 ),
               ),
             ),
@@ -138,7 +138,6 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
           ],
         ),
       ),
-
     );
   }
 }
