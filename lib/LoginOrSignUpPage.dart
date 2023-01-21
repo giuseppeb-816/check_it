@@ -1,3 +1,6 @@
+//Allows user to select if they are logging in or signing up
+//If user is already signed in, don't reprompt
+
 import 'package:flutter/material.dart';
 
 class LoginOrSignUpPage extends StatelessWidget {
