@@ -4,6 +4,43 @@ import 'package:flutter/material.dart';
 import 'package:check_it/pages/SetGoalsPage.dart';
 void main() => runApp(const MyAppSocial());
 
+
+//return container with everything
+//name, second list of goals (within list of goals s
+//func1(name, list of goals, list of completed booleans) -> tied indexes, return Padding widget
+Widget getSocialPage(String name, List<String> goals, List<bool> isCompleted) {
+  return Padding(
+    padding: EdgeInsets.all(0),
+    child: Column(
+      children: <Widget> [
+        ListTile(
+          leading: Icon(
+            Icons.account_circle,
+            size: 32,
+            color: Colors.tealAccent,
+          ),
+          trailing: Icon(
+            (goals[0] == "true" && goals[1] == "true" && goals[2] == "true") ?
+            Icons.star_outlined : (goals[0] == "true" || goals[1] == "true" || goals[2] == "true") ?
+            Icons.star_half_outlined : Icons.star_outline,
+            size: 32,
+            color: Colors.tealAccent,
+          ),
+          tileColor: 0 % 2 == 0 ? Colors.tealAccent : Colors.tealAccent,
+          title: Text('${isCompleted[0]}'),
+          subtitle: Text(
+              "${isCompleted[0] == "true" ? "✔ " : "✘  "} ${isCompleted[0]}\n"
+                  + "${isCompleted[1] == "true" ? "✔ " : "✘  "} ${isCompleted[1]}\n"
+                  + "${isCompleted[2] == "true" ? "✔ " : "✘  "} ${isCompleted[2]}"
+          ),
+          isThreeLine: true,
+        ),
+      ],
+    ),
+  );
+}
+
+
 class MyAppSocial extends StatelessWidget {
   const MyAppSocial({super.key});
 
