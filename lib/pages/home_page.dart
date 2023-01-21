@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _title() {
-    return const Text('Check It');
+    return const Text('CheckIt');
   }
 
   Widget _userUid() {
