@@ -113,7 +113,6 @@ class _createGoals extends State<setGoalsPage> {
                   writeGoals();
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
                 } else {
-                  //todo error message
                   _key.currentState?.reset();
                 }
               },
