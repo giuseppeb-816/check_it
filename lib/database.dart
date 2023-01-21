@@ -42,10 +42,22 @@ class RealtimeDatabase {
     }
   }
 
+  static void changeDoneStatus({
+    required String goalId,
+    required bool currentStatus,
+  }) async {
+    try {
+      await FirebaseDatabase.instance.ref('goals/$goalId').update({'done': !currentStatus});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   static Future<List<List<dynamic>>?> readCurrentUserGoals({required String userId}) async {
     try {
       List<String> _goals = [];
       List<bool> _done = [];
+      List<String> _ids = [];
       DatabaseReference _databaseReference =
         FirebaseDatabase.instance.ref("goals");
       final snapshot = await _databaseReference.get();
@@ -56,9 +68,10 @@ class RealtimeDatabase {
           if (_snapshotValue['user_id'] == userId && _snapshotValue['current']) {
             _goals.add(_snapshotValue['name']);
             _done.add(_snapshotValue['done']);
+            _ids.add(child.key!);
           }
         }
-        return [_goals, _done];
+        return [_goals, _done, _ids];
       } else {
         return null;
       }

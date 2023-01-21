@@ -19,15 +19,13 @@ class clearGoalsPage extends StatefulWidget {
 }
 
 class _clearGoals extends State<clearGoalsPage> {
-  List<bool> checked = [false, false, false];
-
   String errorMessage = '';
 
   Future<List<List<dynamic>>> getGoals() async {
     return await RealtimeDatabase.readCurrentUserGoals(userId: Auth().getCurrentUserId()) ?? [];
   }
 
-  Widget _goalView(String _goal, bool _checked) {
+  Widget _goalView(String _goal, bool _checked, String _id) {
     return Row(
       children: [
         Expanded(
@@ -38,6 +36,7 @@ class _clearGoals extends State<clearGoalsPage> {
           fillColor: MaterialStateProperty.resolveWith(getColor),
           value: _checked,
           onChanged: (bool? value) {
+            RealtimeDatabase.changeDoneStatus(goalId: _id, currentStatus: _checked);
             setState(() {
               _checked = !_checked;
             });
@@ -113,12 +112,13 @@ class _clearGoals extends State<clearGoalsPage> {
                 child: ListView.builder(
                   itemCount: snapshot.data?[0].length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
-                    return _goalView(snapshot.data?[0][index] ?? "got null", snapshot.data?[1][index] ?? false);
+                    return _goalView(snapshot.data?[0][index] ?? "got null", snapshot.data?[1][index] ?? false,
+                    snapshot.data?[2][index] ?? "");
                   }
                 ),
               );
             } else {
-              return Text('No Goals');
+              return Text('');
             }
           }
         ),
