@@ -33,7 +33,7 @@ class _clearGoals extends State<clearGoalsPage> {
   Widget _goalView(String _goal) {
     return Row(
       children: [
-        Text(goalOne, textScaleFactor: 1.5),
+        Text(_goal, textScaleFactor: 1.5),
         Checkbox(
           checkColor: Theme.of(context).colorScheme.background,
           fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -45,7 +45,7 @@ class _clearGoals extends State<clearGoalsPage> {
           },
         )
       ],
-    )
+    );
   }
 
   Widget _title() {
