@@ -7,9 +7,19 @@ class RealtimeDatabase {
   }) async {
     try {
       DatabaseReference _databaseReference =
-      FirebaseDatabase.instance.ref("users/$userId");
+        FirebaseDatabase.instance.ref("users/$userId");
 
       await _databaseReference.set(data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static void writeGoal({
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      await FirebaseDatabase.instance.ref('goals').push().set(data);
     } catch (e) {
       rethrow;
     }

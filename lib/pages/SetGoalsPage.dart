@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../auth.dart';
+import 'package:check_it/database.dart';
 import 'package:check_it/pages/SocialPage.dart';
 import 'package:check_it/pages/ClearGoalsPage.dart';
 
@@ -19,6 +20,33 @@ class _createGoals extends State<setGoalsPage> {
   final TextEditingController _goalOne = TextEditingController();
   final TextEditingController _goalTwo = TextEditingController();
   final TextEditingController _goalThree = TextEditingController();
+
+  void writeGoals() async {
+    RealtimeDatabase.writeGoal(
+      data: {
+        'name': _goalOne.text,
+        'user_id': Auth().getCurrentUserId(),
+        'done': false,
+        'current': true,
+      },
+    );
+    RealtimeDatabase.writeGoal(
+      data: {
+        'name': _goalTwo.text,
+        'user_id': Auth().getCurrentUserId(),
+        'done': false,
+        'current': true,
+      },
+    );
+    RealtimeDatabase.writeGoal(
+      data: {
+        'name': _goalThree.text,
+        'user_id': Auth().getCurrentUserId(),
+        'done': false,
+        'current': true,
+      },
+    );
+  }
 
   Widget _title() {
     return Text(
@@ -54,6 +82,7 @@ class _createGoals extends State<setGoalsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<SlideActionState> _key = GlobalKey();
     bool isFinished = false;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
@@ -74,12 +103,18 @@ class _createGoals extends State<setGoalsPage> {
             _entryField("Goal Three", _goalThree),
             Padding(padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60)),
             SlideAction(
+              key: _key,
               borderRadius: 25,
               outerColor: Colors.deepPurpleAccent[100],
               text: "Swipe to submit goals!",
               textStyle: TextStyle(fontSize: 17, color: Colors.white),
               onSubmit: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
+                if (!(_goalOne.text == "" || _goalTwo.text == "" || _goalThree.text == "" || _goalOne.text.length > 34 || _goalTwo.text.length > 34 || _goalThree.text.length > 34)) {
+                  writeGoals();
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
+                } else {
+                  _key.currentState?.reset();
+                }
               },
             )
           ],
