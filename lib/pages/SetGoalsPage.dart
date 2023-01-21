@@ -1,102 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../auth.dart';
+import 'package:swipeable_button_view/swipeable_button_view.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class setGoalsPage extends StatefulWidget {
+  const setGoalsPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    const appTitle = 'Form Validation Demo';
+  State<setGoalsPage> createState() => _createGoals();
+}
 
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(appTitle),
-        ),
-        body: const MyCustomForm(),
+class _createGoals extends State<setGoalsPage> {
+  String? errorMessage = '';
+
+  final TextEditingController _goalOne = TextEditingController();
+  final TextEditingController _goalTwo = TextEditingController();
+  final TextEditingController _goalThree = TextEditingController();
+
+  Widget _title() {
+    return Text(
+        'Set Your Goals!',
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.primary
+      )
+    );
+  }
+
+  Widget _entryField(
+      String title,
+      TextEditingController controller,
+      ) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: title,
       ),
     );
   }
-}
 
-// Create a Form widget.
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
 
-  @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
+/*
+  Widget _submitButton() {
+    return ElevatedButton(
+      onPressed: () {},
+      child: const Text('Enabled'),
+    );
   }
-}
 
-// Create a corresponding State class.
-// This class holds data related to the form.
-class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
-  final _formKey = GlobalKey<FormState>();
+ */
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Enter Goals"),
-          TextFormField(
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-
-          ),
-          TextFormField(
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-
-          ),
-          TextFormField(
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: _title(),
+      ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _entryField('Goal One', _goalOne),
+            _entryField('Goal Two', _goalTwo),
+            _entryField("Goal Three", _goalThree),
+          ],
+            /*
+            SwipeableButtonView (
+              buttonText: "Swipe to Confirm Goals!",
+              buttonWidget: Container(
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.grey,
+                )
+              ),
+            )
+            */
+        ),
       ),
     );
   }
