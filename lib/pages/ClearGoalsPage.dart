@@ -27,7 +27,7 @@ class _clearGoals extends State<clearGoalsPage> {
     return await RealtimeDatabase.readCurrentUserGoals(userId: Auth().getCurrentUserId()) ?? [];
   }
 
-  Widget _goalView(String _goal) {
+  Widget _goalView(String _goal, bool _checked) {
     return Row(
       children: [
         Expanded(
@@ -36,10 +36,10 @@ class _clearGoals extends State<clearGoalsPage> {
         Checkbox(
           checkColor: Theme.of(context).colorScheme.background,
           fillColor: MaterialStateProperty.resolveWith(getColor),
-          value: checked[0],
+          value: _checked,
           onChanged: (bool? value) {
             setState(() {
-              checked[0] = value!;
+              _checked = !_checked;
             });
           },
         )
@@ -113,7 +113,7 @@ class _clearGoals extends State<clearGoalsPage> {
                 child: ListView.builder(
                   itemCount: snapshot.data?[0].length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
-                    return _goalView(snapshot.data?[0][index] ?? "got null");
+                    return _goalView(snapshot.data?[0][index] ?? "got null", snapshot.data?[1][index] ?? false);
                   }
                 ),
               );
