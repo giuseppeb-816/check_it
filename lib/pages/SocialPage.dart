@@ -103,7 +103,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
 
                   },
                   icon: const Icon(Icons.settings),
-                  label: Text("Settings"),
+                  label: Text("Options"),
                 ),
               ),
             ),
