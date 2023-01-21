@@ -89,20 +89,54 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
             }
         ),
       ),
-      persistentFooterButtons: [
-        ElevatedButton(onPressed: ()
-        {
+      bottomNavigationBar: new Container(
+        padding: EdgeInsets.all(0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ElevatedButton.icon(
+                  onPressed: (){
 
-        }, child: Text("Settings")),
-        ElevatedButton(onPressed: ()
-        {
+                  },
+                  icon: const Icon(Icons.settings),
+                  label: Text("Settings"),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ElevatedButton.icon(
+                  onPressed: (){
 
-        }, child: Text("Profile")),
-        ElevatedButton(onPressed: ()
-        {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
-        }, child: Text("Set Goals")),
-      ],
+                  },
+                  icon: const Icon(Icons.account_circle),
+                  label: Text("Profile"),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
+                  },
+                  icon: const Icon(Icons.check_box),
+                  label: Text("Goals"),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
     );
   }
 }
