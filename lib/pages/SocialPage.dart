@@ -1,6 +1,6 @@
 //Page where user can view their total score and goal history
 import 'package:flutter/material.dart';
-
+import 'package:check_it/pages/SetGoalsPage.dart';
 void main() => runApp(const MyAppSocial());
 
 class MyAppSocial extends StatelessWidget {
@@ -100,7 +100,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
         }, child: Text("Profile")),
         ElevatedButton(onPressed: ()
         {
-
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
         }, child: Text("Set Goals")),
       ],
     );
