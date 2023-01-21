@@ -94,7 +94,13 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
               );
             }
         ),
-      )
+      ),
+      persistentFooterButtons: [
+        ElevatedButton(onPressed: ()
+        {
+          Navigator.of(context).pop();
+        }, child: Text("Back")),
+      ],
     );
   }
 }
