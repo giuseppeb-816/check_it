@@ -94,6 +94,14 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
         {
 
         }, child: Text("Settings")),
+        ElevatedButton(onPressed: ()
+        {
+
+        }, child: Text("Profile")),
+        ElevatedButton(onPressed: ()
+        {
+
+        }, child: Text("Set Goals")),
       ],
     );
   }
