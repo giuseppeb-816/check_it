@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "196638587123",
+    "project_id": "check-it-a8a9d",
+    "storage_bucket": "check-it-a8a9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196638587123:android:d186aa16969e30b3975f86",
+        "android_client_info": {
+          "package_name": "com.pyro.check_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196638587123-7qas070514c55752u51ie63pk1vp60he.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqD0dGq00hvsqVtaHeUStdlk3Z45nEFmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196638587123-7qas070514c55752u51ie63pk1vp60he.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
