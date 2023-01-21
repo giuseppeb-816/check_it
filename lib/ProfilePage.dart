@@ -1,0 +1,1 @@
+//Page where user can view their total score and goal history

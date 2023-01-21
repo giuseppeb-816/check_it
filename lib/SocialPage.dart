@@ -1,0 +1,1 @@
+//Main page for viewing all goals in the database
