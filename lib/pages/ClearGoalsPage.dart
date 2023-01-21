@@ -102,8 +102,8 @@ class _clearGoals extends State<clearGoalsPage> {
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        child: FutureBuilder<List<List<dynamic>>> (
-          future: getGoals(),
+        child: StreamBuilder<List<List<dynamic>>> (
+          stream: getGoals().asStream(),
           builder: (context, snapshot) {
             if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {
