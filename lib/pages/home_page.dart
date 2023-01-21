@@ -1,22 +1,36 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:check_it/auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:check_it/database.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
-  final User? user = Auth().currentUser;
+  @override
+  State<HomePage> createState() => _HomePage();
+}
+
+class _HomePage extends State<HomePage> {
+  final _database = FirebaseDatabase.instance.ref();
+  final _user = Auth().getCurrentUserId();
+
+  @override
+  void initState() {
+    getUsername();
+    super.initState();
+  }
 
   Future<void> signOut() async {
     await Auth().signOut();
   }
 
-  Widget _title() {
-    return const Text('CheckIt');
+  Future<String> getUsername() async {
+    return await RealtimeDatabase.readUser(userId: Auth().getCurrentUserId());
   }
 
-  Widget _userUid() {
-    return Text(user?.email ?? 'User email');
+  Widget _title() {
+    return const Text('CheckIt');
   }
 
   Widget _signOutButton() {
@@ -28,6 +42,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getUsername();
     return Scaffold(
       appBar: AppBar(
         title: _title(),
@@ -40,7 +55,16 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _userUid(),
+            FutureBuilder<String> (
+            future: getUsername(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                  return Text(snapshot.data ?? 'Username');
+                } else {
+                  return Text('Username');
+                }
+              }
+            ),
             _signOutButton(),
           ],
         ),

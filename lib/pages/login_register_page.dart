@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../database.dart';
 import '../auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -34,6 +35,13 @@ class _LoginPageState extends State<LoginPage> {
       await Auth().createUserWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
+      );
+      RealtimeDatabase.writeUser(
+        userId: Auth().getCurrentUserId(),
+        data: {
+          'name': _controllerEmail.text.split("@")[0],
+          'score': 0,
+        },
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
