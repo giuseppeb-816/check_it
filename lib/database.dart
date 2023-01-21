@@ -32,10 +32,33 @@ class RealtimeDatabase {
       final snapshot = await _databaseReference.get();
       if (snapshot.exists) {
         Map<String, dynamic> _snapshotValue =
-        Map<String, dynamic>.from(snapshot.value as Map);
+          Map<String, dynamic>.from(snapshot.value as Map);
         return _snapshotValue['name'] ?? '';
       } else {
         return '';
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future<List<String>?> readCurrentUserGoals({required String userId}) async {
+    try {
+      List<String> _goals = [];
+      DatabaseReference _databaseReference =
+        FirebaseDatabase.instance.ref("goals");
+      final snapshot = await _databaseReference.get();
+      if (snapshot.exists) {
+        for (final child in snapshot.children) {
+          Map<String, dynamic> _snapshotValue =
+            Map<String, dynamic>.from(child.value as Map);
+          if (_snapshotValue['user_id'] == userId && _snapshotValue['current']) {
+            _goals.add(_snapshotValue['name']);
+          }
+        }
+        return _goals;
+      } else {
+        return null;
       }
     } catch (e) {
       rethrow;

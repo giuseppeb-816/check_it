@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../auth.dart';
+import 'package:check_it/database.dart';
 import 'package:check_it/pages/SocialPage.dart';
 
 
@@ -23,6 +24,14 @@ class _clearGoals extends State<clearGoalsPage> {
   String goalThree = "Goal three";
 
   String? errorMessage = '';
+
+  Future<List<String>> getGoals() async {
+    return await RealtimeDatabase.readCurrentUserGoals(userId: Auth().getCurrentUserId()) ?? [];
+  }
+
+  Widget _goalView(String _goal) {
+    return Text(_goal);
+  }
 
   Widget _title() {
     return Text(
@@ -73,11 +82,22 @@ class _clearGoals extends State<clearGoalsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(goalOne, textScaleFactor: 1.5),
-            SizedBox(height: 10),
-            Text(goalTwo, textScaleFactor: 1.5),
-            SizedBox(height: 10),
-            Text(goalThree, textScaleFactor: 1.5),
+            FutureBuilder<List<String>> (
+                future: getGoals(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData &&
+                  snapshot.connectionState == ConnectionState.done) {
+                  return Column(
+                    children: List.generate(
+                    snapshot.data!.length,
+                    (index) => _goalView(snapshot.data?[index] ?? "got null"),
+                    ),
+                  );
+                } else {
+                  return Text('No Goals');
+                }
+              }
+            ),
             ],
           ),
         ),

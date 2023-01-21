@@ -59,7 +59,7 @@ class _HomePage extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             FutureBuilder<String> (
-            future: getUsername(),
+              future: getUsername(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                   return Text(snapshot.data ?? 'Username');
