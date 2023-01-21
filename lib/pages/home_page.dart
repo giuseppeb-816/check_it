@@ -47,7 +47,7 @@ class _HomePage extends State<HomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Colors.deepPurpleAccent[100],
         title: _title(),
       ),
       body: Container(
