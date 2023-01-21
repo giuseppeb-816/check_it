@@ -51,7 +51,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _title() {
-    return const Text('CheckIt Login');
+    return Text(
+        'CheckIt Login',
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.primary,
+      )
+    );
   }
 
   Widget _entryField(
@@ -60,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
       ) {
     return TextField(
       controller: controller,
+      obscureText: title == "password",
       decoration: InputDecoration(
         labelText: title,
       ),
@@ -92,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
         title: _title(),
       ),

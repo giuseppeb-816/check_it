@@ -1,89 +1,143 @@
 //Page where user can view their total score and goal history
-
 import 'package:flutter/material.dart';
+import 'package:check_it/pages/SetGoalsPage.dart';
+void main() => runApp(const MyAppSocial());
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppSocial extends StatelessWidget {
+  const MyAppSocial({super.key});
 
   static const String _title = 'Flutter Code Sample';
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: _title,
-      home: MyStatefulWidget(),
+      theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
+      ),
+      home: SocialPageWidget(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
+class SocialPageWidget extends StatefulWidget {
+  const SocialPageWidget({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<SocialPageWidget> createState() => _SocialPageWidgetState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _SocialPageWidgetState extends State<SocialPageWidget> {
   List<int> top = <int>[];
   List<int> bottom = <int>[];
-  List<String> goals = [
-    "Run a mile",
-    "eat sushi for the first time",
-    "take a nap",
-    "Go fishing",
-    "Eat pie",
-    "Finish math homework",
-    "Take a walk",
-    "Go to Starbucks"
+
+  List<List<String>> goals = [
+    ["Chris", "Run a mile", "true", "Eat sushi", "false", "Take a nap", "true"],
+    ["Joey", "Go fishing", "true", "Eat a pie", "true", "Finish math homework", "true"],
+    ["Anish", "Finish testing code", "false", "Play Clash Royale", "false", "Go home", "false"],
+    ["Karthik", "Get flutter to work on Mac", "true", "Win a 5-leg parlay", "false", "Watch NBA games", "false"]
   ];
+
   @override
   Widget build(BuildContext context) {
     const Key centerKey = ValueKey<String>('bottom-sliver-list');
+    var theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.colorScheme.primaryContainer,
       appBar: AppBar(
         title: const Text('Social Page'),
-        backgroundColor: Colors.deepOrange[500],
+        backgroundColor: theme.colorScheme.primary,
         leading: IconButton(
-          icon: const Icon(Icons.add),
+          icon: const Icon(Icons.arrow_back_sharp),
           onPressed: () {
-            if (bottom.length == 0) {
-              for (var i = 0; i < goals.length; i++) {
-                setState(() {
-                  bottom.add(1);
-                });
-              }
-            }
+            Navigator.of(context).pop();
           },
         ),
       ),
-      body: CustomScrollView(
-        center: centerKey,
-        slivers: <Widget>[
-          SliverList(
-            key: centerKey,
-            delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: index % 2 == 0 ? Colors.blue : Colors.yellow,
-                  height: 100,
-                  child: Column(
-                    children: <Widget>[
-                      Text('Goal: ${goals[index]}',
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                      Text('Owner: Chris'),
-                    ],
+      body: Padding (
+        padding: EdgeInsets.all(0),
+        child: ListView.builder(
+            itemCount: goals.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding (
+                padding: EdgeInsets.all(10),
+                child: ListTile(
+                  leading: Icon(
+                      Icons.account_circle,
+                    size: 32,
+                    color: theme.colorScheme.tertiary
                   ),
-                );
-              },
-              childCount: bottom.length,
-            ),
-          ),
-        ],
+                  trailing: Icon(
+                      (goals[index][2] == "true" && goals[index][4] == "true" && goals[index][6] == "true") ?
+                      Icons.star_outlined : (goals[index][2] == "true" || goals[index][4] == "true" || goals[index][6] == "true") ?
+                      Icons.star_half_outlined : Icons.star_outline,
+                    size: 32,
+                    color: theme.colorScheme.tertiary
+
+                  ),
+                  tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.background,
+                  title: Text('${goals[index][0]}'),
+                  subtitle: Text(
+                      "${goals[index][2] == "true" ? "✔ " : "✘  "} ${goals[index][1]}\n"
+                          + "${goals[index][4] == "true" ? "✔ " : "✘  "} ${goals[index][3]}\n"
+                          + "${goals[index][6] == "true" ? "✔ " : "✘  "} ${goals[index][5]}"
+                  ),
+                  isThreeLine: true,
+                ),
+              );
+            }
+        ),
       ),
+      bottomNavigationBar: new Container(
+        padding: EdgeInsets.all(0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+
+                  },
+                  icon: const Icon(Icons.settings),
+                  label: Text("Options"),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+
+                  },
+                  icon: const Icon(Icons.account_circle),
+                  label: Text("Profile"),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
+                  },
+                  icon: const Icon(Icons.check_box),
+                  label: Text("Goals"),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
     );
   }
 }
