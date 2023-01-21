@@ -19,14 +19,11 @@ class clearGoalsPage extends StatefulWidget {
 }
 
 class _clearGoals extends State<clearGoalsPage> {
-  String goalOne = "Goal one";
-  String goalTwo = "Goal two";
-  String goalThree = "Goal three";
   List<bool> checked = [false, false, false];
 
   String errorMessage = '';
 
-  Future<List<String>> getGoals() async {
+  Future<List<List<dynamic>>> getGoals() async {
     return await RealtimeDatabase.readCurrentUserGoals(userId: Auth().getCurrentUserId()) ?? [];
   }
 
@@ -94,9 +91,6 @@ class _clearGoals extends State<clearGoalsPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isFinished = false;
-
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
@@ -107,29 +101,26 @@ class _clearGoals extends State<clearGoalsPage> {
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FutureBuilder<List<String>> (
-                future: getGoals(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData &&
-                  snapshot.connectionState == ConnectionState.done) {
-                  return Column(
-                    children: List.generate(
-                    snapshot.data!.length,
-                    (index) => _goalView(snapshot.data?[index] ?? "got null"),
-                    ),
-                  );
-                } else {
-                  return Text('No Goals');
-                }
-              }
-            ),
-            ],
-          ),
+        child: FutureBuilder<List<List<dynamic>>> (
+          future: getGoals(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData &&
+              snapshot.connectionState == ConnectionState.done) {
+              return Padding (
+                padding: EdgeInsets.all(0),
+                child: ListView.builder(
+                  itemCount: snapshot.data?[0].length ?? 0,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _goalView(snapshot.data?[0][index] ?? "got null");
+                  }
+                ),
+              );
+            } else {
+              return Text('No Goals');
+            }
+          }
         ),
-      );
+      ),
+    );
   }
 }
