@@ -22,15 +22,30 @@ class _clearGoals extends State<clearGoalsPage> {
   String goalOne = "Goal one";
   String goalTwo = "Goal two";
   String goalThree = "Goal three";
+  List<bool> checked = [false, false, false];
 
-  String? errorMessage = '';
+  String errorMessage = '';
 
   Future<List<String>> getGoals() async {
     return await RealtimeDatabase.readCurrentUserGoals(userId: Auth().getCurrentUserId()) ?? [];
   }
 
   Widget _goalView(String _goal) {
-    return Text(_goal);
+    return Row(
+      children: [
+        Text(goalOne, textScaleFactor: 1.5),
+        Checkbox(
+          checkColor: Theme.of(context).colorScheme.background,
+          fillColor: MaterialStateProperty.resolveWith(getColor),
+          value: checked[0],
+          onChanged: (bool? value) {
+            setState(() {
+              checked[0] = value!;
+            });
+          },
+        )
+      ],
+    )
   }
 
   Widget _title() {
@@ -54,6 +69,18 @@ class _clearGoals extends State<clearGoalsPage> {
     );
   }
 
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.red;
+  }
+
 
 /*
   Widget _submitButton() {
@@ -68,6 +95,8 @@ class _clearGoals extends State<clearGoalsPage> {
   @override
   Widget build(BuildContext context) {
     bool isFinished = false;
+
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
