@@ -1,4 +1,4 @@
-import 'package:check_it/LoginOrSignUp.dart';
+import 'package:check_it/LoginOrSignUpPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
