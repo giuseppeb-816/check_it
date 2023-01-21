@@ -1,4 +1,3 @@
-import 'package:check_it/pages/LoginOrSignUpPage.dart';
 import 'package:check_it/widget_tree.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
