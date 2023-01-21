@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 import '../auth.dart';
-import 'package:swipeable_button_view/swipeable_button_view.dart';
+import 'package:check_it/pages/SocialPage.dart';
+
 
 class setGoalsPage extends StatefulWidget {
   const setGoalsPage({Key? key}) : super(key: key);
@@ -51,6 +53,7 @@ class _createGoals extends State<setGoalsPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isFinished = false;
     return Scaffold(
       appBar: AppBar(
         title: _title(),
@@ -66,18 +69,17 @@ class _createGoals extends State<setGoalsPage> {
             _entryField('Goal One', _goalOne),
             _entryField('Goal Two', _goalTwo),
             _entryField("Goal Three", _goalThree),
-          ],
-            /*
-            SwipeableButtonView (
-              buttonText: "Swipe to Confirm Goals!",
-              buttonWidget: Container(
-                child: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: Colors.grey,
-                )
-              ),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60)),
+            SlideAction(
+              borderRadius: 25,
+              outerColor: Theme.of(context).colorScheme.primary,
+              text: "Swipe to submit goals!",
+              textStyle: TextStyle(fontSize: 17, color: Colors.white),
+              onSubmit: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
+              },
             )
-            */
+          ],
         ),
       ),
     );
