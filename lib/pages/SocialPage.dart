@@ -49,15 +49,9 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
         title: const Text('Social Page'),
         backgroundColor: theme.colorScheme.primary,
         leading: IconButton(
-          icon: const Icon(Icons.add),
+          icon: const Icon(Icons.arrow_back_sharp),
           onPressed: () {
-            if (bottom.length == 0) {
-              for (var i = 0; i < goals.length; i++) {
-                setState(() {
-                  bottom.add(1);
-                });
-              }
-            }
+            Navigator.of(context).pop();
           },
         ),
       ),
@@ -98,8 +92,8 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
       persistentFooterButtons: [
         ElevatedButton(onPressed: ()
         {
-          Navigator.of(context).pop();
-        }, child: Text("Back")),
+
+        }, child: Text("Settings")),
       ],
     );
   }
