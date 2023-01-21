@@ -4,6 +4,7 @@ import 'package:slide_to_act/slide_to_act.dart';
 import '../auth.dart';
 import 'package:check_it/database.dart';
 import 'package:check_it/pages/SocialPage.dart';
+import 'package:check_it/pages/ClearGoalsPage.dart';
 
 
 class setGoalsPage extends StatefulWidget {
@@ -83,7 +84,9 @@ class _createGoals extends State<setGoalsPage> {
   Widget build(BuildContext context) {
     bool isFinished = false;
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         title: _title(),
       ),
       body: Container(
@@ -100,12 +103,12 @@ class _createGoals extends State<setGoalsPage> {
             Padding(padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60)),
             SlideAction(
               borderRadius: 25,
-              outerColor: Theme.of(context).colorScheme.primary,
+              outerColor: Colors.deepPurpleAccent[100],
               text: "Swipe to submit goals!",
               textStyle: TextStyle(fontSize: 17, color: Colors.white),
               onSubmit: () {
                 writeGoals();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
               },
             )
           ],

@@ -48,7 +48,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
       backgroundColor: theme.colorScheme.primaryContainer,
       appBar: AppBar(
         title: const Text('Social Page'),
-        backgroundColor: theme.colorScheme.primary,
+        backgroundColor: Colors.deepPurpleAccent[100],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_sharp),
           onPressed: () {
@@ -91,7 +91,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
         ),
       ),
       bottomNavigationBar: new Container(
-        padding: EdgeInsets.all(0),
+        padding: EdgeInsets.only(bottom: 12),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
