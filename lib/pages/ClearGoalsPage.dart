@@ -22,7 +22,7 @@ class _clearGoals extends State<clearGoalsPage> {
   String goalTwo = "Goal two";
   String goalThree = "Goal three";
 
-  String? errorMessage = '';
+  String errorMessage = '';
 
   Widget _title() {
     return Text(
@@ -59,6 +59,20 @@ class _clearGoals extends State<clearGoalsPage> {
   @override
   Widget build(BuildContext context) {
     bool isFinished = false;
+    List<bool> checked = [false, false, false];
+
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
@@ -73,14 +87,24 @@ class _clearGoals extends State<clearGoalsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(goalOne, textScaleFactor: 1.5),
-            SizedBox(height: 10),
-            Text(goalTwo, textScaleFactor: 1.5),
-            SizedBox(height: 10),
-            Text(goalThree, textScaleFactor: 1.5),
-            ],
-          ),
+            Row(
+              children: [
+                Text(goalOne, textScaleFactor: 1.5),
+                Checkbox(
+                    checkColor: Theme.of(context).colorScheme.background,
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    value: checked[0],
+                    onChanged: (bool? value) {
+                      setState(() {
+                        checked[0] = value!;
+                      });
+                    },
+                )
+              ],
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }
