@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../auth.dart';
+import 'package:check_it/database.dart';
 import 'package:check_it/pages/SocialPage.dart';
 
 
@@ -18,6 +19,33 @@ class _createGoals extends State<setGoalsPage> {
   final TextEditingController _goalOne = TextEditingController();
   final TextEditingController _goalTwo = TextEditingController();
   final TextEditingController _goalThree = TextEditingController();
+
+  void writeGoals() async {
+    RealtimeDatabase.writeGoal(
+      data: {
+        'name': _goalOne.text,
+        'user_id': Auth().getCurrentUserId(),
+        'done': false,
+        'current': true,
+      },
+    );
+    RealtimeDatabase.writeGoal(
+      data: {
+        'name': _goalTwo.text,
+        'user_id': Auth().getCurrentUserId(),
+        'done': false,
+        'current': true,
+      },
+    );
+    RealtimeDatabase.writeGoal(
+      data: {
+        'name': _goalThree.text,
+        'user_id': Auth().getCurrentUserId(),
+        'done': false,
+        'current': true,
+      },
+    );
+  }
 
   Widget _title() {
     return Text(
@@ -76,6 +104,7 @@ class _createGoals extends State<setGoalsPage> {
               text: "Swipe to submit goals!",
               textStyle: TextStyle(fontSize: 17, color: Colors.white),
               onSubmit: () {
+                writeGoals();
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
               },
             )
