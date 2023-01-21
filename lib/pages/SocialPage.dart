@@ -34,10 +34,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   List<int> bottom = <int>[];
 
   List<List<String>> goals = [
-    ["Chris", "Run a mile", "Eat sushi", "Take a nap"],
-    ["Joey", "Go fishing", "Eat a pie", "Finish math homework"],
-    ["Anish", "Finish testing code", "Play Clash Royale", "Go home"],
-    ["Karthik", "Get flutter to work on Mac", "Win a 5-leg parlay", "Watch NBA games"]
+    ["Chris", "Run a mile", "true", "Eat sushi", "false", "Take a nap", "true"],
+    ["Joey", "Go fishing", "true", "Eat a pie", "true", "Finish math homework", "true"],
+    ["Anish", "Finish testing code", "false", "Play Clash Royale", "false", "Go home", "false"],
+    ["Karthik", "Get flutter to work on Mac", "true", "Win a 5-leg parlay", "false", "Watch NBA games", "false"]
   ];
 
   @override
@@ -70,13 +70,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               return Padding (
                 padding: EdgeInsets.all(10),
                 child: ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                       Icons.account_circle,
                     size: 32,
+                    color: theme.colorScheme.tertiary
+                  ),
+                  trailing: Icon(
+                      (goals[index][2] == "true" && goals[index][4] == "true" && goals[index][6] == "true") ?
+                      Icons.star_outlined : (goals[index][2] == "true" || goals[index][4] == "true" || goals[index][6] == "true") ?
+                      Icons.star_half_outlined : Icons.star_outline,
+                    size: 32,
+                    color: theme.colorScheme.tertiary
+
                   ),
                   tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.primaryContainer,
                   title: Text('${goals[index][0]}'),
-                  subtitle: Text("${goals[index][1]}\n${goals[index][2]}\n${goals[index][3]}"),
+                  subtitle: Text(
+                      "${goals[index][2] == "true" ? "✔ " : "✘  "} ${goals[index][1]}\n"
+                          + "${goals[index][4] == "true" ? "✔ " : "✘  "} ${goals[index][3]}\n"
+                          + "${goals[index][6] == "true" ? "✔ " : "✘  "} ${goals[index][5]}"
+                  ),
                   isThreeLine: true,
                 ),
               );
