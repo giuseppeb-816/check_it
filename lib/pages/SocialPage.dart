@@ -16,15 +16,6 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
   List<int> top = <int>[];
   List<int> bottom = <int>[];
 
-  List<List<String>> goals = [
-    ["Chris", "Run a mile", "true", "Eat sushi", "false", "Take a nap", "true"],
-    ["Joey", "Go fishing", "true", "Eat a pie", "true", "Finish math homework", "true"],
-    ["Anish", "Solve a competitive programming problem", "true", "Finish math homework", "false", "Learn a new programming language", "true"],
-    ["Karthik", "Go to the gym", "true", "Finish Arduino project", "true", "Apply for an internship", "false"],
-    ["Alice", "Send data to Bob", "true", "Learn about cryptography", "false", "Find her private key", "false"],
-    ["Bob", "Receive data from Alice", "true", "Learn about cryptography", "true", "Find his public key", "false"],
-  ];
-
   Future<List<List<dynamic>>> getGoals() async {
     return await RealtimeDatabase.readAllGoals() ?? [];
   }
@@ -94,7 +85,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                 ),
               );
             } else {
-              return Text('No profiles found.');
+              return Text('');
             }
           }
         ),
