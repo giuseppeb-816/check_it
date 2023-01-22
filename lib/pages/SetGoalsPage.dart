@@ -21,7 +21,9 @@ class _createGoals extends State<setGoalsPage> {
   final TextEditingController _goalTwo = TextEditingController();
   final TextEditingController _goalThree = TextEditingController();
 
-  void writeGoals() async {
+  Future<bool> writeGoals(BuildContext context) async {
+    List<String> goalsIds = await RealtimeDatabase.readCurrentUserGoalIds(userId: Auth().getCurrentUserId()) ?? [];
+    RealtimeDatabase.clearUserGoals(goalIds: goalsIds);
     RealtimeDatabase.writeGoal(
       data: {
         'name': _goalOne.text,
@@ -46,6 +48,9 @@ class _createGoals extends State<setGoalsPage> {
         'current': true,
       },
     );
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => clearGoalsPage()));
+    return true;
   }
 
   Widget _title() {
@@ -110,8 +115,7 @@ class _createGoals extends State<setGoalsPage> {
               textStyle: TextStyle(fontSize: 17, color: Colors.white),
               onSubmit: () {
                 if (!(_goalOne.text == "" || _goalTwo.text == "" || _goalThree.text == "" || _goalOne.text.length > 34 || _goalTwo.text.length > 34 || _goalThree.text.length > 34)) {
-                  writeGoals();
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
+                  writeGoals(context);
                 } else {
                   _key.currentState?.reset();
                 }
