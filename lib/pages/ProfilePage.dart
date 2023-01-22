@@ -43,7 +43,7 @@ class _ProfilePage extends State<ProfilePage> {
                       "Profile Name",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 50,
                       ),
                     )
                   ]

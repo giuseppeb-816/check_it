@@ -1,5 +1,6 @@
 //Page where user can view their total score and goal history
 import 'package:check_it/pages/ProfilePage.dart';
+import 'package:check_it/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:check_it/pages/SetGoalsPage.dart';
 import 'package:check_it/database.dart';
@@ -18,8 +19,10 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
   List<List<String>> goals = [
     ["Chris", "Run a mile", "true", "Eat sushi", "false", "Take a nap", "true"],
     ["Joey", "Go fishing", "true", "Eat a pie", "true", "Finish math homework", "true"],
-    ["Anish", "Finish testing code", "false", "Play Clash Royale", "false", "Go home", "false"],
-    ["Karthik", "Get flutter to work on Mac", "true", "Win a 5-leg parlay", "false", "Watch NBA games", "false"]
+    ["Anish", "Solve a competitive programming problem", "true", "Finish math homework", "false", "Learn a new programming language", "true"],
+    ["Karthik", "Go to the gym", "true", "Finish Arduino project", "true", "Apply for an internship", "false"],
+    ["Alice", "Send data to Bob", "true", "Learn about cryptography", "false", "Find her private key", "false"],
+    ["Bob", "Receive data from Alice", "true", "Learn about cryptography", "true", "Find his public key", "false"],
   ];
 
   Future<List<List<dynamic>>> getGoals() async {
@@ -107,7 +110,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton.icon(
                   onPressed: (){
-
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   icon: const Icon(Icons.home_filled),
                   label: Text("Home"),
