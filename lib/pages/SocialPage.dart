@@ -1,5 +1,6 @@
 //Page where user can view their total score and goal history
 import 'package:check_it/pages/ProfilePage.dart';
+import 'package:check_it/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:check_it/pages/SetGoalsPage.dart';
 void main() => runApp(const MyAppSocial());
@@ -141,7 +142,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton.icon(
                   onPressed: (){
-
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   icon: const Icon(Icons.home_filled),
                   label: Text("Home"),
