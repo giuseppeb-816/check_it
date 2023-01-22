@@ -109,6 +109,9 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                   icon: const Icon(Icons.home_filled),
                   label: AutoSizeText(
                       "Home",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       maxLines: 1,
                   ),
                 ),
@@ -125,6 +128,9 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                   icon: const Icon(Icons.account_circle),
                   label: AutoSizeText(
                       "Profile",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       maxLines: 1,
                   ),
                 ),
@@ -141,6 +147,9 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                   icon: const Icon(Icons.check_box),
                   label: AutoSizeText(
                       "Goals",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       maxLines: 1,
                   ),
                 ),

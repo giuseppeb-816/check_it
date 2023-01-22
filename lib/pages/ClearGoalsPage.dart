@@ -149,6 +149,9 @@ class _clearGoals extends State<clearGoalsPage> {
                   icon: const Icon(Icons.home_filled),
                   label: AutoSizeText(
                       "Home",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       maxLines: 1,
                   ),
                 ),
@@ -165,6 +168,9 @@ class _clearGoals extends State<clearGoalsPage> {
                   icon: const Icon(Icons.account_circle),
                   label: AutoSizeText(
                       "Profile",
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       maxLines: 1,
                   ),
                 ),
@@ -181,6 +187,9 @@ class _clearGoals extends State<clearGoalsPage> {
                   icon: const Icon(Icons.group),
                   label: AutoSizeText(
                     "CheckOut",
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
                     maxLines: 1,
                   ),
                 ),

@@ -118,12 +118,12 @@ class _HomePage extends State<HomePage> {
                   flex: 1,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
                     },
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: AutoSizeText(
-                          "Profile",
+                          "CheckOut",
                           style: TextStyle(
                             fontSize: 24,
                           ),
@@ -158,7 +158,22 @@ class _HomePage extends State<HomePage> {
                 SizedBox(width: 50),
                 Expanded(
                   flex: 1,
-                  child: _signOutButton(context),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
+                    },
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: AutoSizeText(
+                          "CheckIn",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                          maxLines: 1,
+                        )
+                    ),
+                  ),
                 )
               ],
             ),
@@ -169,12 +184,12 @@ class _HomePage extends State<HomePage> {
                   flex: 1,
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
                       },
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: AutoSizeText(
-                          "CheckIn",
+                          "Profile",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 24,
@@ -191,17 +206,7 @@ class _HomePage extends State<HomePage> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
                       },
-                    child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: AutoSizeText(
-                          "CheckOut",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                          ),
-                          maxLines: 1,
-                        )
-                    ),
+                    child: _signOutButton(context),
                   ),
                 )
               ],
