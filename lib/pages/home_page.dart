@@ -6,6 +6,8 @@ import 'package:check_it/pages/SetGoalsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:check_it/database.dart';
 
+import 'ClearGoalsPage.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -72,6 +74,9 @@ class _HomePage extends State<HomePage> {
             ElevatedButton(onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
             }, child: Text("Set Goals")),
+            ElevatedButton(onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
+            }, child: Text("Check Goals")),
             ElevatedButton(onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
             }, child: Text("Social Page")),
