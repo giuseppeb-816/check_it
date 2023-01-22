@@ -10,6 +10,10 @@ import '../auth.dart';
 import 'package:check_it/database.dart';
 import 'package:check_it/pages/SocialPage.dart';
 
+import 'ProfilePage.dart';
+import 'SetGoalsPage.dart';
+import 'home_page.dart';
+
 
 class clearGoalsPage extends StatefulWidget {
   const clearGoalsPage({Key? key}) : super(key: key);
@@ -121,6 +125,53 @@ class _clearGoals extends State<clearGoalsPage> {
               return Text('');
             }
           }
+        ),
+      ),
+      bottomNavigationBar: new Container(
+        padding: EdgeInsets.only(bottom: 12),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+                  },
+                  icon: const Icon(Icons.home_filled),
+                  label: Text("Home"),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                  },
+                  icon: const Icon(Icons.account_circle),
+                  label: Text("Profile"),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton.icon(
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
+                  },
+                  icon: const Icon(Icons.check_box),
+                  label: Text("Social"),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:check_it/database.dart';
 
 import 'ClearGoalsPage.dart';
+import 'ProfilePage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+
   final _database = FirebaseDatabase.instance.ref();
   final _user = Auth().getCurrentUserId();
 
@@ -27,6 +29,7 @@ class _HomePage extends State<HomePage> {
 
   Future<void> signOut() async {
     await Auth().signOut();
+
   }
 
   void signOutButton() {
@@ -106,6 +109,28 @@ class _HomePage extends State<HomePage> {
               }
             ),
             SizedBox(height: 200),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                    },
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          "Profile",
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        )
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 50),
             Row(
               children: [
                 Expanded(
