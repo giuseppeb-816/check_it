@@ -29,9 +29,11 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
     return await RealtimeDatabase.readAllGoals() ?? [];
   }
 
-  Widget getSocialPage(String name, List<String> goals, List<bool> isCompleted) {
+  Widget getSocialPage(String name, List<String> goals, List<bool> isCompleted, BuildContext context, int index) {
+    var theme = Theme.of(context);
+
     return Padding(
-      padding: EdgeInsets.all(0),
+      padding: EdgeInsets.all(10),
       child: Column(
         children: <Widget> [
           ListTile(
@@ -45,9 +47,9 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
               Icons.star_outlined : (isCompleted[0] == true || isCompleted[1] == true || isCompleted[2] == true) ?
               Icons.star_half_outlined : Icons.star_outline,
               size: 32,
-              color: Colors.tealAccent,
+              color: theme.colorScheme.tertiary,
             ),
-            tileColor: 0 % 2 == 0 ? Colors.white : Colors.black,
+            tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.background,
             title: Text('${name}'),
             subtitle: Text(
                 "${isCompleted[0] == true ? "✔ " : "✘  "} ${goals[0]}\n"
@@ -79,7 +81,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
         ),
       ),
       body: Padding (
-        padding: EdgeInsets.all(0),
+        padding: EdgeInsets.only(top: 15),
         child: FutureBuilder<List<List<dynamic>>>(
           future: getGoals(),
           builder: (context, snapshot) {
@@ -89,7 +91,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
               child: ListView.builder(
                 itemCount: snapshot.data?[0].length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  return getSocialPage(snapshot.data?[0][index], snapshot.data?[1][index][0], snapshot.data?[1][index][1]);
+                  return getSocialPage(snapshot.data?[0][index], snapshot.data?[1][index][0], snapshot.data?[1][index][1], context, index);
                   }
                 ),
               );
