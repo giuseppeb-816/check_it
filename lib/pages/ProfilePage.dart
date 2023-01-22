@@ -1,5 +1,7 @@
 // Page where users can view their profile
 import 'package:flutter/material.dart';
+import 'package:check_it/database.dart';
+import 'package:check_it/auth.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -16,6 +18,10 @@ class _ProfilePage extends State<ProfilePage> {
             color: Colors.black,
         )
     );
+  }
+
+  Future<String> getUsername() async {
+    return await RealtimeDatabase.readUser(userId: Auth().getCurrentUserId());
   }
 
   @override
@@ -39,14 +45,24 @@ class _ProfilePage extends State<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      "Profile Name",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 50,
-                      ),
-                    )
-                  ]
+                  FutureBuilder<String> (
+                      future: getUsername(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                          return Text(
+                              snapshot.data! ?? 'Username',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 50,
+                                color: theme.colorScheme.primary,
+                              )
+                          );
+                        } else {
+                          return Text('');
+                        }
+                      }
+                  ),
+              ]
               ),
             ),
             SizedBox(height: 40),
@@ -58,7 +74,7 @@ class _ProfilePage extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "21420",
+                        "379",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 56,
