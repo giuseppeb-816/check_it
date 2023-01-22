@@ -29,6 +29,11 @@ class _HomePage extends State<HomePage> {
     await Auth().signOut();
   }
 
+  void signOutButton() {
+    signOut();
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+
   Future<String> getUsername() async {
     return await RealtimeDatabase.readUser(userId: Auth().getCurrentUserId());
   }
@@ -50,9 +55,9 @@ class _HomePage extends State<HomePage> {
     );
   }
 
-  Widget _signOutButton() {
+  Widget _signOutButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: signOut,
+      onPressed: signOutButton,
       child: Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
@@ -123,7 +128,7 @@ class _HomePage extends State<HomePage> {
                 SizedBox(width: 50),
                 Expanded(
                   flex: 1,
-                  child: _signOutButton(),
+                  child: _signOutButton(context),
                 )
               ],
             ),
