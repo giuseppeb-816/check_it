@@ -34,7 +34,12 @@ class _clearGoals extends State<clearGoalsPage> {
     return Row(
       children: [
         Expanded(
-          child: AutoSizeText('${_goal}asdfasdfasdfasdfasdfasdf', maxLines: 1),
+          child: AutoSizeText(
+              '${_goal}',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+              maxLines: 1),
         ),
         Checkbox(
           checkColor: Theme.of(context).colorScheme.background,
