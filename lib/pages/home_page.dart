@@ -34,18 +34,41 @@ class _HomePage extends State<HomePage> {
   }
 
   Widget _title() {
-    return const Text('CheckIt');
+    return Row(
+      children: [
+        Text(
+            "CheckIt"
+        ),
+        Spacer(),
+        Text(
+          "BoilerMake X\nSpecial Demo",
+          style: TextStyle(
+            fontSize: 14,
+          )
+        )
+      ]
+    );
   }
 
   Widget _signOutButton() {
     return ElevatedButton(
       onPressed: signOut,
-      child: const Text('Sign Out'),
+      child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            "Sign Out",
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          )
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
@@ -64,22 +87,88 @@ class _HomePage extends State<HomePage> {
               future: getUsername(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                  return Text(snapshot.data ?? 'Username');
+                  return Text(
+                      'Welcome,\n${snapshot.data}!' ?? 'Username',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 54,
+                        color: theme.colorScheme.primary,
+                      )
+                  );
                 } else {
                   return Text('Username');
                 }
               }
             ),
-            _signOutButton(),
-            ElevatedButton(onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
-            }, child: Text("Set Goals")),
-            ElevatedButton(onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
-            }, child: Text("Check Goals")),
-            ElevatedButton(onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
-            }, child: Text("Social Page")),
+            SizedBox(height: 200),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          "Set Goals",
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        )
+                      ),
+                  ),
+                ),
+                SizedBox(width: 50),
+                Expanded(
+                  flex: 1,
+                  child: _signOutButton(),
+                )
+              ],
+            ),
+            SizedBox(height: 50),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
+                      },
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          "CheckIn",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        )
+                    ),
+                  ),
+                ),
+                SizedBox(width: 50),
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
+                      },
+                    child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          "CheckOut",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        )
+                    ),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
