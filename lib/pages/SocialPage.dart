@@ -106,7 +106,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   icon: const Icon(Icons.home_filled),
-                  label: Text("Home"),
+                  label: Text("Home", style: TextStyle(fontSize: 12)),
                 ),
               ),
             ),
@@ -119,7 +119,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   icon: const Icon(Icons.account_circle),
-                  label: Text("Profile"),
+                  label: Text("Profile", style: TextStyle(fontSize: 12)),
                 ),
               ),
             ),
@@ -132,7 +132,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
                   },
                   icon: const Icon(Icons.check_box),
-                  label: Text("Goals"),
+                  label: Text("Goals", style: TextStyle(fontSize: 12)),
                 ),
               ),
             ),

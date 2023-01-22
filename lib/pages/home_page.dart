@@ -104,7 +104,7 @@ class _HomePage extends State<HomePage> {
                       )
                   );
                 } else {
-                  return Text('Username');
+                  return Text('');
                 }
               }
             ),

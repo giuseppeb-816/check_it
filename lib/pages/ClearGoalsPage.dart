@@ -141,7 +141,7 @@ class _clearGoals extends State<clearGoalsPage> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   icon: const Icon(Icons.home_filled),
-                  label: Text("Home"),
+                  label: Text("Home", style: TextStyle(fontSize: 12)),
                 ),
               ),
             ),
@@ -154,7 +154,7 @@ class _clearGoals extends State<clearGoalsPage> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   icon: const Icon(Icons.account_circle),
-                  label: Text("Profile"),
+                  label: Text("Profile", style: TextStyle(fontSize: 12)),
                 ),
               ),
             ),
@@ -166,8 +166,8 @@ class _clearGoals extends State<clearGoalsPage> {
                   onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
                   },
-                  icon: const Icon(Icons.check_box),
-                  label: Text("Social"),
+                  icon: const Icon(Icons.group),
+                  label: Text("CheckOut", style: TextStyle(fontSize: 12),),
                 ),
               ),
             ),
