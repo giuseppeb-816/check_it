@@ -1,4 +1,5 @@
 //Page where user can view their total score and goal history
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:check_it/pages/ProfilePage.dart';
 import 'package:check_it/pages/home_page.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
               color: theme.colorScheme.tertiary,
             ),
             tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.background,
-            title: Text('${name}'),
+            title: AutoSizeText('${name}', maxLines: 1),
             subtitle: Text(
                 "${isCompleted[0] == true ? "✔ " : "✘  "} ${goals[0]}\n"
                     + "${isCompleted[1] == true ? "✔ " : "✘  "} ${goals[1]}\n"
@@ -106,7 +107,10 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   icon: const Icon(Icons.home_filled),
-                  label: Text("Home", style: TextStyle(fontSize: 12)),
+                  label: AutoSizeText(
+                      "Home",
+                      maxLines: 1,
+                  ),
                 ),
               ),
             ),
@@ -119,7 +123,10 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   icon: const Icon(Icons.account_circle),
-                  label: Text("Profile", style: TextStyle(fontSize: 12)),
+                  label: AutoSizeText(
+                      "Profile",
+                      maxLines: 1,
+                  ),
                 ),
               ),
             ),
@@ -132,7 +139,10 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
                   },
                   icon: const Icon(Icons.check_box),
-                  label: Text("Goals", style: TextStyle(fontSize: 12)),
+                  label: AutoSizeText(
+                      "Goals",
+                      maxLines: 1,
+                  ),
                 ),
               ),
             ),

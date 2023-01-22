@@ -3,6 +3,7 @@
 //Allows user to clear one or more goals
 //Upon submission, send user to (Wait for 9PM Page) or Social Page if past 9
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slide_to_act/slide_to_act.dart';
@@ -33,7 +34,7 @@ class _clearGoals extends State<clearGoalsPage> {
     return Row(
       children: [
         Expanded(
-          child: Text(_goal, textScaleFactor: 1.5),
+          child: AutoSizeText('${_goal}asdfasdfasdfasdfasdfasdf', maxLines: 1),
         ),
         Checkbox(
           checkColor: Theme.of(context).colorScheme.background,
@@ -141,7 +142,10 @@ class _clearGoals extends State<clearGoalsPage> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   icon: const Icon(Icons.home_filled),
-                  label: Text("Home", style: TextStyle(fontSize: 12)),
+                  label: AutoSizeText(
+                      "Home",
+                      maxLines: 1,
+                  ),
                 ),
               ),
             ),
@@ -154,7 +158,10 @@ class _clearGoals extends State<clearGoalsPage> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   icon: const Icon(Icons.account_circle),
-                  label: Text("Profile", style: TextStyle(fontSize: 12)),
+                  label: AutoSizeText(
+                      "Profile",
+                      maxLines: 1,
+                  ),
                 ),
               ),
             ),
@@ -167,7 +174,10 @@ class _clearGoals extends State<clearGoalsPage> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
                   },
                   icon: const Icon(Icons.group),
-                  label: Text("CheckOut", style: TextStyle(fontSize: 12),),
+                  label: AutoSizeText(
+                    "CheckOut",
+                    maxLines: 1,
+                  ),
                 ),
               ),
             ),

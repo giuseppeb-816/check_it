@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:check_it/pages/SetGoalsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:check_it/database.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import 'ClearGoalsPage.dart';
 import 'ProfilePage.dart';
@@ -63,11 +64,12 @@ class _HomePage extends State<HomePage> {
       onPressed: signOutButton,
       child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Text(
+          child: AutoSizeText(
             "Sign Out",
             style: TextStyle(
               fontSize: 24,
             ),
+            maxLines: 1,
           )
       ),
     );
@@ -95,13 +97,14 @@ class _HomePage extends State<HomePage> {
               future: getUsername(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                  return Text(
+                  return AutoSizeText(
                       'Welcome,\n${snapshot.data}!' ?? 'Username',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 54,
                         color: theme.colorScheme.primary,
-                      )
+                      ),
+                      maxLines: 2,
                   );
                 } else {
                   return Text('');
@@ -119,11 +122,12 @@ class _HomePage extends State<HomePage> {
                     },
                     child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: AutoSizeText(
                           "Profile",
                           style: TextStyle(
                             fontSize: 24,
                           ),
+                          maxLines: 1,
                         )
                     ),
                   ),
@@ -141,11 +145,12 @@ class _HomePage extends State<HomePage> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: AutoSizeText(
                           "Set Goals",
                           style: TextStyle(
                             fontSize: 24,
                           ),
+                          maxLines: 1,
                         )
                       ),
                   ),
@@ -168,12 +173,13 @@ class _HomePage extends State<HomePage> {
                       },
                     child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: AutoSizeText(
                           "CheckIn",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 24,
                           ),
+                          maxLines: 1,
                         )
                     ),
                   ),
@@ -187,12 +193,13 @@ class _HomePage extends State<HomePage> {
                       },
                     child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: AutoSizeText(
                           "CheckOut",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 24,
                           ),
+                          maxLines: 1,
                         )
                     ),
                   ),
