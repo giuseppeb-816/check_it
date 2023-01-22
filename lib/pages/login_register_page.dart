@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
     return Text(
         'CheckIt Login',
       style: TextStyle(
-        color: Theme.of(context).colorScheme.primary,
+        color: Colors.black,
       )
     );
   }
@@ -101,6 +101,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
         title: _title(),
+        backgroundColor: Colors.deepPurpleAccent[100],
       ),
       body: Container(
         height: double.infinity,

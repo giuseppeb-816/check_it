@@ -54,7 +54,7 @@ class _clearGoals extends State<clearGoalsPage> {
     return Text(
         'CheckIt',
         style: TextStyle(
-            color: Theme.of(context).colorScheme.primary
+            color: Colors.black,
         )
     );
   }
@@ -99,7 +99,7 @@ class _clearGoals extends State<clearGoalsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Colors.deepPurpleAccent[100],
         title: _title(),
       ),
       body: Container(

@@ -13,7 +13,7 @@ class _ProfilePage extends State<ProfilePage> {
     return Text(
         'Profile',
         style: TextStyle(
-            color: Theme.of(context).colorScheme.primary
+            color: Colors.black,
         )
     );
   }
@@ -25,7 +25,7 @@ class _ProfilePage extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Colors.deepPurpleAccent[100],
         title: _title(),
       ),
       body: Padding(

@@ -57,7 +57,7 @@ class _createGoals extends State<setGoalsPage> {
     return Text(
         'Set Your Goals!',
       style: TextStyle(
-        color: Theme.of(context).colorScheme.primary
+        color: Colors.black,
       )
     );
   }
@@ -92,7 +92,7 @@ class _createGoals extends State<setGoalsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Colors.deepPurpleAccent[100],
         title: _title(),
       ),
       body: Container(
