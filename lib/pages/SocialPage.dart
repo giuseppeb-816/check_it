@@ -63,7 +63,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
     return Scaffold(
       backgroundColor: theme.colorScheme.primaryContainer,
       appBar: AppBar(
-        title: const Text('Social Page'),
+        title: const Text('CheckOut'),
         backgroundColor: Colors.deepPurpleAccent[100],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_sharp),

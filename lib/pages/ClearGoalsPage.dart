@@ -58,7 +58,7 @@ class _clearGoals extends State<clearGoalsPage> {
 
   Widget _title() {
     return Text(
-        'CheckIt',
+        'CheckIn',
         style: TextStyle(
             color: Colors.black,
         )
