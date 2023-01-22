@@ -80,21 +80,23 @@ class RealtimeDatabase {
     }
   }
 
-  static Future<Map<String, dynamic>?> readAllGoals() async {
+  static Future<List<List<dynamic>>?> readAllGoals() async {
     try {
       DatabaseReference _userDatabaseReference =
         FirebaseDatabase.instance.ref("users");
-      List<String> _users = [];
-      Map<String, dynamic> _return = {};
+      List<String> _userNames = [];
+      List<dynamic> _goals = [];
       final snapshot = await _userDatabaseReference.get();
       if (snapshot.exists) {
-        Map<String, dynamic> _snapshotValue =
-          Map<String, dynamic>.from(snapshot.value as Map);
-          _users = _snapshotValue.keys as List<String>;
+          final _users = snapshot.children;
           for (final _user in _users) {
-            _return[_user] = await readCurrentUserGoals(userId: _user);
+            final _userGoals = await readCurrentUserGoals(userId: _user.key ?? '');
+            if (!_userGoals![0].isEmpty) {
+              _userNames.add(await readUser(userId: _user.key ?? ''));
+              _goals.add(_userGoals);
+            }
           }
-          return _return;
+          return [_userNames, _goals];
       } else {
         return null;
       }

@@ -2,62 +2,7 @@
 import 'package:check_it/pages/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:check_it/pages/SetGoalsPage.dart';
-void main() => runApp(const MyAppSocial());
-
-
-//return container with everything
-//name, second list of goals (within list of goals s
-//func1(name, list of goals, list of completed booleans) -> tied indexes, return Padding widget
-Widget getSocialPage(String name, List<String> goals, List<bool> isCompleted) {
-  return Padding(
-    padding: EdgeInsets.all(0),
-    child: Column(
-      children: <Widget> [
-        ListTile(
-          leading: Icon(
-            Icons.account_circle,
-            size: 32,
-            color: Colors.tealAccent,
-          ),
-          trailing: Icon(
-            (goals[0] == "true" && goals[1] == "true" && goals[2] == "true") ?
-            Icons.star_outlined : (goals[0] == "true" || goals[1] == "true" || goals[2] == "true") ?
-            Icons.star_half_outlined : Icons.star_outline,
-            size: 32,
-            color: Colors.tealAccent,
-          ),
-          tileColor: 0 % 2 == 0 ? Colors.tealAccent : Colors.tealAccent,
-          title: Text('${isCompleted[0]}'),
-          subtitle: Text(
-              "${isCompleted[0] == "true" ? "✔ " : "✘  "} ${isCompleted[0]}\n"
-                  + "${isCompleted[1] == "true" ? "✔ " : "✘  "} ${isCompleted[1]}\n"
-                  + "${isCompleted[2] == "true" ? "✔ " : "✘  "} ${isCompleted[2]}"
-          ),
-          isThreeLine: true,
-        ),
-      ],
-    ),
-  );
-}
-
-
-class MyAppSocial extends StatelessWidget {
-  const MyAppSocial({super.key});
-
-  static const String _title = 'Flutter Code Sample';
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-      ),
-      home: SocialPageWidget(),
-    );
-  }
-}
+import 'package:check_it/database.dart';
 
 class SocialPageWidget extends StatefulWidget {
   const SocialPageWidget({super.key});
@@ -76,6 +21,42 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
     ["Anish", "Finish testing code", "false", "Play Clash Royale", "false", "Go home", "false"],
     ["Karthik", "Get flutter to work on Mac", "true", "Win a 5-leg parlay", "false", "Watch NBA games", "false"]
   ];
+
+  Future<List<List<dynamic>>> getGoals() async {
+    return await RealtimeDatabase.readAllGoals() ?? [];
+  }
+
+  Widget getSocialPage(String name, List<String> goals, List<bool> isCompleted) {
+    return Padding(
+      padding: EdgeInsets.all(0),
+      child: Column(
+        children: <Widget> [
+          ListTile(
+            leading: Icon(
+              Icons.account_circle,
+              size: 32,
+              color: Colors.black,
+            ),
+            trailing: Icon(
+              (isCompleted[0] == true && isCompleted[1] == true && isCompleted[2] == true) ?
+              Icons.star_outlined : (isCompleted[0] == true || isCompleted[1] == true || isCompleted[2] == true) ?
+              Icons.star_half_outlined : Icons.star_outline,
+              size: 32,
+              color: Colors.tealAccent,
+            ),
+            tileColor: 0 % 2 == 0 ? Colors.white : Colors.black,
+            title: Text('${name}'),
+            subtitle: Text(
+                "${isCompleted[0] == true ? "✔ " : "✘  "} ${goals[0]}\n"
+                    + "${isCompleted[1] == true ? "✔ " : "✘  "} ${goals[1]}\n"
+                    + "${isCompleted[2] == true ? "✔ " : "✘  "} ${goals[2]}"
+            ),
+            isThreeLine: true,
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,36 +77,23 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
       ),
       body: Padding (
         padding: EdgeInsets.all(0),
-        child: ListView.builder(
-            itemCount: goals.length,
-            itemBuilder: (BuildContext context, int index) {
+        child: FutureBuilder<List<List<dynamic>>>(
+          future: getGoals(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
               return Padding (
-                padding: EdgeInsets.all(10),
-                child: ListTile(
-                  leading: Icon(
-                      Icons.account_circle,
-                    size: 32,
-                    color: theme.colorScheme.tertiary
-                  ),
-                  trailing: Icon(
-                      (goals[index][2] == "true" && goals[index][4] == "true" && goals[index][6] == "true") ?
-                      Icons.star_outlined : (goals[index][2] == "true" || goals[index][4] == "true" || goals[index][6] == "true") ?
-                      Icons.star_half_outlined : Icons.star_outline,
-                    size: 32,
-                    color: theme.colorScheme.tertiary
-
-                  ),
-                  tileColor: index % 2 == 0 ? theme.colorScheme.inversePrimary : theme.colorScheme.background,
-                  title: Text('${goals[index][0]}'),
-                  subtitle: Text(
-                      "${goals[index][2] == "true" ? "✔ " : "✘  "} ${goals[index][1]}\n"
-                          + "${goals[index][4] == "true" ? "✔ " : "✘  "} ${goals[index][3]}\n"
-                          + "${goals[index][6] == "true" ? "✔ " : "✘  "} ${goals[index][5]}"
-                  ),
-                  isThreeLine: true,
+              padding: EdgeInsets.all(0),
+              child: ListView.builder(
+                itemCount: snapshot.data?[0].length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  return getSocialPage(snapshot.data?[0][index], snapshot.data?[1][index][0], snapshot.data?[1][index][1]);
+                  }
                 ),
               );
+            } else {
+              return Text('No profiles found.');
             }
+          }
         ),
       ),
       bottomNavigationBar: new Container(
