@@ -160,7 +160,7 @@ class _HomePage extends State<HomePage> {
                   flex: 1,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => setGoalsPage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => clearGoalsPage()));
                     },
                     child: Padding(
                         padding: const EdgeInsets.all(10),
@@ -202,13 +202,8 @@ class _HomePage extends State<HomePage> {
                 SizedBox(width: 50),
                 Expanded(
                   flex: 1,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SocialPageWidget()));
-                      },
-                    child: _signOutButton(context),
+                  child: _signOutButton(context),
                   ),
-                )
               ],
             ),
           ],
